@@ -2,8 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import './App.css';
 import Header from './components/Header';
-import Home from './components/Home';
-import Login from './components/Login';
+import Rooms from './components/Rooms';
+import LoginScreen from './screens/LoginScreen';
 import Register from './components/Register';
 
 function App() {
@@ -13,8 +13,8 @@ function App() {
        
        <Header/>
        <Routes>
-        <Route path="/" element={<Home/>} />
-        <Route path="/login" element={<Login/>} />
+        <Route path="/" element={<Rooms/>} />
+        <Route path="/login" element={<LoginScreen/>} />
         <Route path="/register" element={<Register/>} />
         </Routes>
     </Router>
