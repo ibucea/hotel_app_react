@@ -1,65 +1,73 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import React, { useState, useEffect } from 'react';
-// import { useNavigate } from 'react-router-dom';
-// import { useSelector, useDispatch } from 'react-redux';
-import { Container } from '@material-ui/core';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Container, FormGroup, Button, FormControl, InputLabel, Input, FormHelperText } from '@material-ui/core';
 import { login } from '../redux/actions/UserActions';
-import { IUserLogin } from '../interfaces/IUser';
-// import { RootState, AppDispatch } from '../redux/store';
+import { RootStateOrAny } from '../redux/store';
+import { IUser } from '../interfaces/IUser';
+import Loader from '../components/Loader'
+
 
 const LoginScreen: React.FC = () => {
 
-    // let navigate = useNavigate();
-    // const dispatch: AppDispatch = useDispatch()
+    let navigate = useNavigate();
+    const dispatch = useDispatch();
 
-    const [email, setEmail] = useState<IUserLogin['email']>("");
-    const [password, setPassword] = useState<IUserLogin['password']>("");
 
-    // const userInfo = useSelector((state: RootState) => state.userLogin);
+    const [email, setEmail] = useState<IUser['email']>("");
+    const [password, setPassword] = useState<IUser['password']>("");
+
+    const { userInfo, loading, success } = useSelector((state: RootStateOrAny) => state.userLogin);
+
+    console.log(userInfo, 'USERRRR INFO', loading, 'LOADINGGGG', success, 'SUCCESSS');
 
 
     const handleSubmit = (e: React.FormEvent) => {
-        // e.preventDefault();
-        console.log('login');
+        console.log('LOGIN');
+        e.preventDefault();
         login({ email, password });
     }
 
-    // useEffect(() => {
-    //     if(userInfo) {
-    //         navigate("/");
-    //     }
-    // }, [userInfo, dispatch, navigate]);
-    
+    useEffect(() => {
+        if (success || userInfo) {
+            navigate("/");
+        }
+    }, [userInfo, success, navigate]);
 
-  return (
-      <Container>
-   
-                <h2 className="mb-4">Login</h2>
-                   
-                        <div>E-Mail</div>
-                        <input
-                            type="email" 
-                            value={email} 
-                            placeholder="E-Mail" 
-                            onChange={(e) => setEmail(e.target.value)}
-                        >
-                        </input>
-            
-                        <div>Password</div>
-                        <input 
-                            type="password" 
-                            value={password} 
-                            placeholder="Password" 
-                            onChange={(e) => setPassword(e.target.value)}
-                        >
-                        </input>
-               
-                  
-                        <button type="submit" onSubmit={handleSubmit}>
-                            {`Login`}
-                        </button>
-      
-    </Container>
-  );
+
+    return (
+        <Container maxWidth="sm">
+
+            <h1>Login</h1>
+
+            <FormControl >
+                <FormControl>
+                    <FormGroup aria-controls='email'>
+                        <InputLabel htmlFor="my-input">Email address</InputLabel>
+                        <Input id="email" aria-describedby="my-helper-text" onChange={(e) => setEmail(e.target.value)} type="email" />
+                        <FormHelperText id="my-helper-text">We'll never share your email.</FormHelperText>
+                    </FormGroup>
+                </FormControl>
+
+
+                <FormControl>
+                    <FormGroup aria-controls='password'>
+                        <InputLabel htmlFor="my-input">Password</InputLabel>
+                        <Input id="password" aria-describedby="my-helper-text" onChange={(e) => setPassword(e.target.value)} type="password" />
+                        <FormHelperText id="my-helper-text">We'll never share your password.</FormHelperText>
+                    </FormGroup>
+                </FormControl>
+             
+                <FormGroup>
+                    <Button type="submit" onSubmit={handleSubmit}>
+                        {loading ? <Loader /> : `Login`}
+                    </Button>
+                </FormGroup>
+            </FormControl>
+        </Container>
+    );
 };
 
 export default LoginScreen;
+

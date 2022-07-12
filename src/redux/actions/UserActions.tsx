@@ -16,7 +16,7 @@ export const login = (user: IUserLogin) => async (dispatch: Dispatch) => {
             }
         };
 
-        const { data } = await axios.post("/login", user, config);
+        const { data } = await axios.post("/api/users/login", user, config);
 
         console.log("userInfo-----userACTION", JSON.stringify(data))
 

@@ -2,9 +2,10 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import './App.css';
 import Header from './components/Header';
-import Rooms from './components/Rooms';
+// import Rooms from './components/Rooms';
 import LoginScreen from './screens/LoginScreen';
 import Register from './components/Register';
+import HomeScreen from './screens/HomeScreen';
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
        
        <Header/>
        <Routes>
-        <Route path="/" element={<Rooms/>} />
+        <Route path="/" element={<HomeScreen/>} />
         <Route path="/login" element={<LoginScreen/>} />
         <Route path="/register" element={<Register/>} />
         </Routes>
