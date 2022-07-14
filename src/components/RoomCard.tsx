@@ -2,6 +2,7 @@ import React from 'react';
 import { Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { IRoom } from '../interfaces/IRoom';
+import './Styles.css';
 
 type IRoomCard = Pick<IRoom, 'roomId' | 'name' | 'pricePerNight'>;
 type CardProps = {
@@ -19,12 +20,12 @@ const RoomCard: React.FC<IRoomCard> = (props: IRoomCard) => {
   return (
     <Card>
         <>
-            <Link to={`/room/${roomId}`}>
+            <Link to={`/room/${roomId}`} className="roomLink">
               {name}
             </Link>
             ${pricePerNight} / Per Night
-            <Link to={`/room/${roomId}`}>
-              <Button className="w-100">View Details</Button>
+            <Link to={`/room/${roomId}`} className="roomLink">
+              <Button>View Details</Button>
             </Link>
             </>
     </Card>

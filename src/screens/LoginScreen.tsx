@@ -20,13 +20,10 @@ const LoginScreen: React.FC = () => {
 
     const { userInfo, loading, success } = useSelector((state: RootStateOrAny) => state.userLogin);
 
-    console.log(userInfo, 'USERRRR INFO', loading, 'LOADINGGGG', success, 'SUCCESSS');
-
 
     const handleSubmit = (e: React.FormEvent) => {
-        console.log('LOGIN');
         e.preventDefault();
-        login({ email, password });
+        login(dispatch)({ email, password });
     }
 
     useEffect(() => {
@@ -60,7 +57,7 @@ const LoginScreen: React.FC = () => {
                 </FormControl>
              
                 <FormGroup>
-                    <Button type="submit" onSubmit={handleSubmit}>
+                    <Button type="submit" onClick={handleSubmit}>
                         {loading ? <Loader /> : `Login`}
                     </Button>
                 </FormGroup>

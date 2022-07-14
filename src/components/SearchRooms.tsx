@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, FormControl, Input, InputLabel, MenuItem, Select  } from '@material-ui/core';
+import { Container, FormControl, Input, InputLabel, MenuItem, Select } from '@material-ui/core';
 
 type SearchRoomsParams = {
     keyword: string,
@@ -12,73 +12,75 @@ type SearchRoomsParams = {
 
 
 
-export const SearchRooms: React.FC<SearchRoomsParams> = 
-({ keyword, setKeyword, numOfBeds, setNumOfBeds, roomType, setRoomType }) => {
+export const SearchRooms: React.FC<SearchRoomsParams> =
+    ({ keyword, setKeyword, numOfBeds, setNumOfBeds, roomType, setRoomType }) => {
 
-const handleRoomTypeChange = 
-  (event: React.ChangeEvent<{ name?: string, value: unknown}>) => {
-    setRoomType(
-      typeof event.target.value === 'string' 
-        ? event.target.value : ''
-    );
-  };
+        const handleRoomTypeChange =
+            (event: React.ChangeEvent<{ name?: string, value: unknown }>) => {
+                setRoomType(
+                    typeof event.target.value === 'string'
+                        ? event.target.value : ''
+                );
+            };
 
-  const handleNumOfBedsChange = 
-  (event: React.ChangeEvent<{ name?: string, value: unknown}>) => {
-    setNumOfBeds(
-      typeof event.target.value === 'string' 
-        ? event.target.value : ''
-    );
-  };
+        const handleNumOfBedsChange =
+            (event: React.ChangeEvent<{ name?: string, value: unknown }>) => {
+                setNumOfBeds(
+                    typeof event.target.value === 'string'
+                        ? event.target.value : ''
+                );
+            };
 
-  return (
-    <Container>
-        <div>
-            <div>
-                <FormControl >
-                    <InputLabel>Search</InputLabel>
-                    <Input 
-                        type="text"
-                        name="keyword"
-                        placeholder="Search"
-                        value={keyword}
-                        onChange={(e) => setKeyword(e.target.value)}
-                    />
-                </FormControl>
-            </div>
-            <div>
-                <FormControl >
-                    <InputLabel>Num of Beds</InputLabel>
-                    <Select 
-                        name="numOfBeds" 
-                        value={numOfBeds} 
-                        onChange={handleNumOfBedsChange} 
-                        labelId="simple-select-label"
-                    >
-                       <MenuItem value={10}>One</MenuItem>
-                        <MenuItem value={20}>Two</MenuItem>
-                        <MenuItem value={30}>Three</MenuItem>
-                    </Select>
-                </FormControl >
-            </div>
-            <div>
-                <FormControl >
-                    <InputLabel>Room Type</InputLabel>
-                    <Select 
-                        name="roomType"
-                        value={roomType} 
-                        onChange={handleRoomTypeChange} 
-                        labelId="simple-select-label"
-                    >
-                        <option value="King">King</option>
-                        <option value="Single">Single</option>
-                        <option value="Twins">Twins</option>
-                    </Select>
-                </FormControl >
-            </div>
-        </div>
-    </Container>
-  );
-};
+        return (
+            <Container>
+                <div>
+
+                    <FormControl >
+                        <InputLabel>Search</InputLabel>
+                        <Input
+                            type="text"
+                            name="keyword"
+                            placeholder="Search"
+                            value={keyword}
+                            onChange={(e) => setKeyword(e.target.value)}
+                        />
+                    </FormControl>
+
+
+                    <FormControl >
+                        <InputLabel>Num of Beds</InputLabel>
+                        <Select defaultValue={'DEFAULT'}
+                            name="numOfBeds"
+                            value={numOfBeds}
+                            onChange={handleNumOfBedsChange}
+                            labelId="Num-of-Beds"
+                        >
+                            {/* <option value="DEFAULT" disabled>Choose the numOfBeds ...</option> */}
+                            <option id='op1' value={10}>One</option>
+                            <option id='op2' value={20}>Two</option>
+                            <option id='op3' value={30}>Three</option>
+                        </Select>
+                    </FormControl >
+
+
+                    <FormControl >
+                        <InputLabel>Room Type</InputLabel>
+                        <Select defaultValue={'DEFAULT'}
+                            name="roomType"
+                            value={roomType}
+                            onChange={handleRoomTypeChange}
+                            labelId="Room-Type"
+                        >
+                            {/* <option value="DEFAULT" disabled>Choose the Room type ...</option> */}
+                            <option id='opt1' value="King">King</option>
+                            <option id='opt2' value="Single">Single</option>
+                            <option id='opt3' value="Twins">Twins</option>
+                        </Select>
+                    </FormControl >
+
+                </div>
+            </Container>
+        );
+    };
 
 export default SearchRooms;

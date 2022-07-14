@@ -3,9 +3,8 @@ import * as actions from '../constants/UserConstants';
 import axios from 'axios';
 import { IUserLogin } from '../../interfaces/IUser';
 
-export const login = (user: IUserLogin) => async (dispatch: Dispatch) => {
+export const login = (dispatch: Dispatch) => async (user: IUserLogin) =>  {
 
-    console.log('action login');
     try {
         
         dispatch({ type: actions.USER_LOGIN_REQUEST });
@@ -18,14 +17,11 @@ export const login = (user: IUserLogin) => async (dispatch: Dispatch) => {
 
         const { data } = await axios.post("/api/users/login", user, config);
 
-        console.log("userInfo-----userACTION", JSON.stringify(data))
-
         dispatch({ type: actions.USER_LOGIN_SUCCESS, payload: data });
 
         localStorage.setItem("userInfo", JSON.stringify(data));
 
     } catch (error: any) {
-        console.log('errorrr');
         dispatch({
         type: actions.USER_LOGIN_FAIL,
         payload:
@@ -34,5 +30,12 @@ export const login = (user: IUserLogin) => async (dispatch: Dispatch) => {
             : error.message,
         });
     }
+
+}
+
+export const logout = (dispatch: Dispatch) =>() =>  {
+
+    dispatch({ type: actions.USER_LOGOUT });
+    localStorage.removeItem("userInfo");
 
 }

@@ -1,0 +1,31 @@
+.homelink {
+    text-decoration: none;
+    color: "white";
+    font-size: "20px";
+    position: fixed;
+    margin-left: 150px;
+
+}
+
+.profilelink{
+    text-decoration: none;
+    color: "white";
+    font-size: "20px";
+    margin-right: 50px;
+}
+.userInfo{ 
+    margin-right: 60px;
+}
+
+.loginLink{
+    margin-right: 20px;
+}
+
+.roomLink{
+    margin-right: 30px;
+}
+
+.logo {
+    flex-grow: 1;
+    cursor: "pointer",
+  }

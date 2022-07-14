@@ -1,7 +1,9 @@
 import { createStore, compose, applyMiddleware, combineReducers } from "redux";
 import thunk from "redux-thunk";
 import { userLoginReducer } from './reducers/UserReducers';
-import {roomsFetchReducer} from './reducers/RoomReducers';
+import {roomsFetchReducer, roomDetailsReducer} from './reducers/RoomReducers';
+import { userRegisterReducer} from './reducers/RegisterReducers';
+import { roomBookingCheckReducer, bookedDatesReducer, bookingCreateReducer, BookingsMyReducer} from './reducers/BookingReducers'
 
 
 import { AnyIfEmpty } from 'react-redux'
@@ -12,7 +14,13 @@ const composeEnhancer = (window && (window as any).__REDUX_DEVTOOLS_EXTENSION_CO
 
 const rootReducers = combineReducers({
     userLogin: userLoginReducer,
-    roomsFetch: roomsFetchReducer
+    userRegister: userRegisterReducer,
+    roomsFetch: roomsFetchReducer,
+    roomDetails:roomDetailsReducer,
+    roomBookingCheck: roomBookingCheckReducer,
+    bookedDates: bookedDatesReducer,
+    bookingCreate: bookingCreateReducer,
+    BookingsMy: BookingsMyReducer
 })
 
 
@@ -31,9 +39,6 @@ const store = createStore(
 
 
 export type RootStateOrAny = AnyIfEmpty<typeof store.getState> 
-export type AppDispatch = typeof store.dispatch
-// export const useAppDispatch: () => AppDispatch = useDispatch 
-
-
+export type RootState = ReturnType<typeof store.getState>
 
 export default store;

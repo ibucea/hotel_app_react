@@ -18,7 +18,7 @@ const Paginate: React.FC<PaginateParams> = ({ currentPage, setCurrentPage, total
 
 	return (
 		<ul className="pagination">
-			<li className={`page-item ${currentPage === 1 && `disabled`}`}>
+			<li>
 				<button className="page-link" onClick={() => setCurrentPage(currentPage - 1)}>
 					&laquo;
 				</button>
@@ -32,7 +32,7 @@ const Paginate: React.FC<PaginateParams> = ({ currentPage, setCurrentPage, total
 					<button className="page-link">{page}</button>
 				</li>
 			))}
-			<li className={`page-item ${currentPage === totalPages && `disabled`}`}>
+			<li >
 				<button className="page-link" onClick={() => setCurrentPage(currentPage + 1)}>
 					&raquo;
 				</button>

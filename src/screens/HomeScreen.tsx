@@ -22,28 +22,25 @@ const HomeScreen = () => {
     const [currentPage, setCurrentPage] = useState<number>(1);
     const { loading, rooms, count, error } = useSelector((state: RootStateOrAny) => state.roomsFetch);
 
-    console.log(rooms, 'ROOMSSSSS');
-
-
+   
 
 
     useEffect(() => {
-        console.log('use efect');
-        dispatch(fetchRooms(keyword, numOfBeds, roomType, currentPage));
+        fetchRooms(dispatch)(keyword, numOfBeds, roomType, currentPage);
     }, [dispatch, keyword, numOfBeds, roomType, currentPage]);
 
     return (
         <Container>
 
             <h2>All Rooms</h2>
-            <SearchRooms
+            {/* <SearchRooms
                 keyword={keyword}
                 setKeyword={setKeyword}
                 numOfBeds={numOfBeds}
                 setNumOfBeds={setNumOfBeds}
                 roomType={roomType}
                 setRoomType={setRoomType}
-            />
+            /> */}
             <Grid>
                 {loading ? <Loader /> : error ? <Alert severity="error">{error}</Alert> : rooms.length > 0 ?
                     <>
@@ -59,7 +56,7 @@ const HomeScreen = () => {
                         </>
                     )}
             </Grid>
-            <Grid>
+            {/* <Grid>
                 <Paper>
                     {count !== 0 && (
                         <Paginate
@@ -70,7 +67,7 @@ const HomeScreen = () => {
                         />
                     )}
                 </Paper>
-            </Grid>
+            </Grid> */}
         </Container>
     );
 };
