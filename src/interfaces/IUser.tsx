@@ -6,7 +6,7 @@ export interface IUserLogin {
 }
 
 export interface IUser extends IUserLogin {
-    userId: IntegerDataType,
+    userId: string,
     username: string
 }
 

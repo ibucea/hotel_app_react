@@ -63,11 +63,11 @@ const RegisterScreen: React.FC = () => {
                 </FormControl>
 
          
-                    <FormControl>
-                        <Button onSubmit={handleSubmit} type="submit">
-                            {loading ? <Loader /> : `Register`}
-                        </Button>
-                    </FormControl>
+                <FormGroup>
+                    <Button type="submit" onClick={handleSubmit}>
+                        {loading ? <Loader /> : `Register`}
+                    </Button>
+                </FormGroup>
                 </FormControl >
     </Container>
   );

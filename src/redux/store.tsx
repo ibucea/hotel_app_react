@@ -25,6 +25,7 @@ const rootReducers = combineReducers({
 
 
 const userInfoFromStorage = JSON.parse(localStorage.getItem("userInfo")!);
+const middleware = [thunk]
 
 const initialState = {
   userLogin: {
@@ -34,7 +35,7 @@ const initialState = {
 const store = createStore(
     rootReducers,
     initialState,
-    composeEnhancer(applyMiddleware(thunk))
+    composeEnhancer(applyMiddleware(...middleware))
   );
 
 

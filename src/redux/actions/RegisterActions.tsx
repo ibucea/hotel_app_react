@@ -7,7 +7,6 @@ import { IUserRegister } from '../../interfaces/IUser';
 export const register = (dispatch: Dispatch) => async (user: IUserRegister) =>  {
 
     try {
-        
         dispatch({ type: actions.USER_REGISTER_REQUEST });
 
         const config = {
@@ -17,6 +16,8 @@ export const register = (dispatch: Dispatch) => async (user: IUserRegister) =>  
         };
 
         const { data } = await axios.post("/api/users/register", user, config);
+
+        console.log('data');
 
         dispatch({ type: actions.USER_REGISTER_SUCCESS });
         dispatch({ type: userAction.USER_LOGIN_SUCCESS, payload: data });

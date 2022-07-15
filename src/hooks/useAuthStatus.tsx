@@ -5,11 +5,10 @@ import type { RootStateOrAny } from '../redux/store'
 
 
 export const useAuthStatus = () => {
-
     const [loggedIn, setLoggedIn] = useState(false)
     const [checkingStatus, setCheckingStatus] = useState(true)
 
-    const userInfo  = useSelector((state: RootStateOrAny) => state.userLogin);
+    const { userInfo } = useSelector((state: RootStateOrAny) => state.userLogin);
 
     useEffect(() => {
         if (userInfo) {
@@ -23,8 +22,3 @@ export const useAuthStatus = () => {
     return { loggedIn, checkingStatus }
 
 }
-
-
-// Use throughout your app instead of plain `useDispatch` and `useSelector`
-// export const useAppDispatch = () => useDispatch<AppDispatch>()
-// export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector

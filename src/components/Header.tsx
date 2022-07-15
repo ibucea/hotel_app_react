@@ -22,6 +22,7 @@ const Header: React.FC = () => {
     navigate("/");
     logout(dispatch)();
   }
+
 return (
   <AppBar position="static">
   <Toolbar>

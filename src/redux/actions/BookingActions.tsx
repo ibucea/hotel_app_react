@@ -3,6 +3,8 @@ import axios from 'axios';
 import * as actions from '../constants/BookingConstants';
 import { IRoom } from "../../interfaces/IRoom";
 import { ICreateBooking } from "../../interfaces/IBooking";
+import { IUser } from "../../interfaces/IUser";
+import store from "../store";
 
 export const checkRoomBooking = (dispatch: Dispatch) => async(roomId: IRoom['roomId'], checkInDate: Date, checkOutDate: Date) => {
 
@@ -33,12 +35,11 @@ export const createBooking = (dispatch: Dispatch, getState: any) => async (booki
     try {
         dispatch({ type: actions.CREATE_BOOKING_REQUEST });
 
-        const { userLogin: { userInfo } } = getState();
-
+        const  {user}  = getState;
         const config = {
             headers: {
                 "Content-Type": "application/JSON",
-                "Authorization": `Bearer ${userInfo.token}`
+                "Authorization": `Bearer ${user.token}`
             }
         }
 
@@ -72,17 +73,17 @@ export const getBookedDates = (dispatch: Dispatch) => async (roomId:  IRoom['roo
     }
 }
 
-export const getMyBookings = (dispatch: Dispatch, getState: any) => async () =>  {
-
+export const getMyBookings = (dispatch: Dispatch, getState:any) => async () =>  {
+  
     try {
         dispatch({ type: actions.GET_MY_BOOKINGS_REQUEST });
-
-        const { userLogin: { userInfo } } = getState();
+       
+        const  {user}  = getState;
 
         const config = {
             headers: {
                 "Content-Type": "application/JSON",
-                "Authorization": `Bearer ${userInfo.token}`
+                "Authorization": `Bearer ${user.token}`
             }
         };
 

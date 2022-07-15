@@ -22,27 +22,30 @@ import { IBooking } from '../interfaces/IBooking';
 
 // import { Link } from 'react-router-dom';
 import { CHECK_ROOM_BOOKING_RESET, CREATE_BOOKING_RESET } from '../redux/constants/BookingConstants';
-// import axios from 'axios';
+import { IUser } from '../interfaces/IUser';
 
 
 
 
 type TId = {
-    id: IRoom['roomId']
+    id: IRoom['roomId'],
+    userId: IUser['userId']
+
 }
 
 const RoomDetailsScreen = () => {
 
     const { loggedIn } = useAuthStatus();
 
+
     const [checkInDate, setCheckInDate] = useState<IBooking['checkInDate']>();
     const [checkOutDate, setCheckOutDate] = useState<IBooking['checkOutDate']>();
     const [daysOfStay, setDaysOfStay] = useState<IBooking['daysOfStay']>(0);
 
-    const { id } = useParams<TId>();
+    const { id, userId } = useParams<TId>();
 
     const dispatch = useDispatch();
-
+    const { userInfo } = useSelector((state: RootStateOrAny) => state.userLogin);
     const { loading, room, error } = useSelector((state: RootState) => state.roomDetails);
 
 
@@ -88,19 +91,20 @@ const RoomDetailsScreen = () => {
     const successBooking = () => {
 
         const bookingData = {
-            room: id,
+            roomId: id,
+            userId: userInfo.user.userId,
             checkInDate, 
             checkOutDate, 
             daysOfStay,
+            createdAt: new Date(),
+            updatedAt: new Date()
         }
-
-        createBooking(dispatch, loggedIn)(bookingData);
+        createBooking(dispatch,userInfo)(bookingData);
         getBookedDates(dispatch)(id as string);
         dispatch({ type: CHECK_ROOM_BOOKING_RESET });
         dispatch({ type: CREATE_BOOKING_RESET });
 
     }
-
 
   return (
       <Container>
@@ -126,19 +130,18 @@ const RoomDetailsScreen = () => {
                                     {successRoomIsAvailable && <Alert severity='success'>Room Is Available</Alert>}                               
                                     {errorRoomIsAvailable && <Alert severity='error'>{errorRoomIsAvailable}</Alert>}
 
+                                    {!loggedIn && (
+                                        <Alert severity='info'>
+                                            Please <Link to="/login">Sign In</Link> for booking
+                                        </Alert>
+                                     )}
+
                                     {loggedIn && successRoomIsAvailable && ( 
                                         <Button onClick={successBooking}>
                                             Booking
                                         </Button>
                                      )}
 
-                                   
-
-                                     {!loggedIn && !successRoomIsAvailable && (
-                                        <Alert severity='info'>
-                                            Please <Link to="/login">Sign In</Link> for booking
-                                        </Alert>
-                                     )}
                                 
                                      {successBookingCreate && (
                                         <Alert severity='success'>
