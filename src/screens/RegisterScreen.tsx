@@ -8,7 +8,6 @@ import Loader from '../components/Loader';
 import { IUser } from '../interfaces/IUser';
 
 const RegisterScreen: React.FC = () => {
-
     const dispatch = useDispatch();
     let navigate = useNavigate();
 
@@ -24,13 +23,11 @@ const RegisterScreen: React.FC = () => {
         register(dispatch)({ username, email, password });
     }
 
-
     useEffect(() => {
         if(userInfo) {
             navigate("/");
         }
     }, [dispatch, userInfo, success, navigate]);
-    
 
   return (
       <Container>
@@ -61,7 +58,6 @@ const RegisterScreen: React.FC = () => {
                         <FormHelperText id="my-helper-text">We'll never share your password.</FormHelperText>
                     </FormGroup>
                 </FormControl>
-
          
                 <FormGroup>
                     <Button type="submit" onClick={handleSubmit}>

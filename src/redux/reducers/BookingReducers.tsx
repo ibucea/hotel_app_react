@@ -2,7 +2,6 @@ import * as actions from '../constants/BookingConstants';
 import { AnyAction } from 'redux'
 
 export const roomBookingCheckReducer = (state = {}, action: AnyAction) => {
-
     switch (action.type) {
         case actions.CHECK_ROOM_BOOKING_REQUEST:
             return {
@@ -27,7 +26,6 @@ export const roomBookingCheckReducer = (state = {}, action: AnyAction) => {
 }
 
 export const bookedDatesReducer = (state = {}, action: AnyAction) => {
-
     switch (action.type) {
         case actions.GET_BOOKED_DATES_REQUEST:
             return {
@@ -51,7 +49,6 @@ export const bookedDatesReducer = (state = {}, action: AnyAction) => {
 }
 
 export const bookingCreateReducer = (state = {}, action: AnyAction) => {
-
     switch (action.type) {
         case actions.CREATE_BOOKING_REQUEST:
             return {
@@ -76,7 +73,6 @@ export const bookingCreateReducer = (state = {}, action: AnyAction) => {
 }
 
 export const BookingsMyReducer = (state = {}, action: AnyAction) => {
-
     switch (action.type) {
         case actions.GET_MY_BOOKINGS_REQUEST:
             return {

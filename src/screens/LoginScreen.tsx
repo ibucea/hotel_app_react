@@ -8,18 +8,14 @@ import { RootStateOrAny } from '../redux/store';
 import { IUser } from '../interfaces/IUser';
 import Loader from '../components/Loader'
 
-
 const LoginScreen: React.FC = () => {
-
     let navigate = useNavigate();
     const dispatch = useDispatch();
-
 
     const [email, setEmail] = useState<IUser['email']>("");
     const [password, setPassword] = useState<IUser['password']>("");
 
     const { userInfo, loading, success } = useSelector((state: RootStateOrAny) => state.userLogin);
-
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -31,7 +27,6 @@ const LoginScreen: React.FC = () => {
             navigate("/");
         }
     }, [userInfo, success, navigate]);
-
 
     return (
         <Container maxWidth="sm">
@@ -46,7 +41,6 @@ const LoginScreen: React.FC = () => {
                         <FormHelperText id="my-helper-text">We'll never share your email.</FormHelperText>
                     </FormGroup>
                 </FormControl>
-
 
                 <FormControl>
                     <FormGroup aria-controls='password'>
@@ -67,4 +61,3 @@ const LoginScreen: React.FC = () => {
 };
 
 export default LoginScreen;
-

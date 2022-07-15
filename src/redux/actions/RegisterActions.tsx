@@ -4,8 +4,7 @@ import * as userAction from '../constants/UserConstants'
 import axios from 'axios';
 import { IUserRegister } from '../../interfaces/IUser';
 
-export const register = (dispatch: Dispatch) => async (user: IUserRegister) =>  {
-
+export const register = (dispatch: Dispatch) => async (user: IUserRegister) => {
     try {
         dispatch({ type: actions.USER_REGISTER_REQUEST });
 
@@ -26,12 +25,11 @@ export const register = (dispatch: Dispatch) => async (user: IUserRegister) =>  
 
     } catch (error: any) {
         dispatch({
-        type: actions.USER_REGISTER_FAIL,
-        payload:
-            error.response && error.response.data.message
-            ? error.response.data.message
-            : error.message,
+            type: actions.USER_REGISTER_FAIL,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message,
         });
     }
-
 }

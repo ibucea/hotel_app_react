@@ -4,8 +4,6 @@ import { userLoginReducer } from './reducers/UserReducers';
 import {roomsFetchReducer, roomDetailsReducer} from './reducers/RoomReducers';
 import { userRegisterReducer} from './reducers/RegisterReducers';
 import { roomBookingCheckReducer, bookedDatesReducer, bookingCreateReducer, BookingsMyReducer} from './reducers/BookingReducers'
-
-
 import { AnyIfEmpty } from 'react-redux'
 
 
@@ -25,13 +23,14 @@ const rootReducers = combineReducers({
 
 
 const userInfoFromStorage = JSON.parse(localStorage.getItem("userInfo")!);
-const middleware = [thunk]
+const middleware = [thunk];
 
 const initialState = {
   userLogin: {
     userInfo: userInfoFromStorage
   }
 };
+
 const store = createStore(
     rootReducers,
     initialState,
@@ -41,5 +40,6 @@ const store = createStore(
 
 export type RootStateOrAny = AnyIfEmpty<typeof store.getState> 
 export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch
 
 export default store;

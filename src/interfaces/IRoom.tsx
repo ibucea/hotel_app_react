@@ -1,5 +1,3 @@
-
-
 export interface IRoom {
     roomId: string,
     name: string

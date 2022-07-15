@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import type { RootStateOrAny } from '../redux/store'
 
-
 export const useAuthStatus = () => {
     const [loggedIn, setLoggedIn] = useState(false)
     const [checkingStatus, setCheckingStatus] = useState(true)
@@ -20,5 +19,4 @@ export const useAuthStatus = () => {
     }, [userInfo])
 
     return { loggedIn, checkingStatus }
-
 }

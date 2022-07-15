@@ -7,29 +7,28 @@ import './Styles.css';
 type IRoomCard = Pick<IRoom, 'roomId' | 'name' | 'pricePerNight'>;
 type CardProps = {
     children: JSX.Element;
-  };
-  
-  function Card(props: CardProps) {
+};
+
+function Card(props: CardProps) {
     return <div>{props.children}</div>;
-  }
+}
 
 const RoomCard: React.FC<IRoomCard> = (props: IRoomCard) => {
+    const { roomId, name, pricePerNight } = props;
 
-  const { roomId, name, pricePerNight } = props;
-
-  return (
-    <Card>
-        <>
-            <Link to={`/room/${roomId}`} className="roomLink">
-              {name}
-            </Link>
-            ${pricePerNight} / Per Night
-            <Link to={`/room/${roomId}`} className="roomLink">
-              <Button>View Details</Button>
-            </Link>
+    return (
+        <Card>
+            <>
+                <Link to={`/room/${roomId}`} className="roomLink">
+                    {name}
+                </Link>
+                ${pricePerNight} / Per Night
+                <Link to={`/room/${roomId}`} className="roomLink">
+                    <Button>View Details</Button>
+                </Link>
             </>
-    </Card>
-  );
+        </Card>
+    );
 };
 
 export default RoomCard;

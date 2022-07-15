@@ -8,7 +8,6 @@ import { getMyBookings } from '../redux/actions/BookingActions';
 import moment from 'moment';
 
 const ProfileScreen: React.FC = () => {
-
   const dispatch = useDispatch();
 
   const { userInfo } = useSelector((state: RootStateOrAny) => state.userLogin);
@@ -30,10 +29,7 @@ const ProfileScreen: React.FC = () => {
       <br></br>
       Email: {userInfo.user.email}
 
-
       <h2>My Bookings</h2>
-
-
       {loading ? <Loader /> : error ? <Alert severity='error'>{error}</Alert> : (
         <Table>
           <thead>
@@ -45,7 +41,6 @@ const ProfileScreen: React.FC = () => {
               <th>Days Of Stay</th>
               <th>Created At</th>
               <th>Updated At</th>
-
             </tr>
           </thead>
           <tbody>
@@ -70,4 +65,3 @@ const ProfileScreen: React.FC = () => {
 };
 
 export default ProfileScreen;
-

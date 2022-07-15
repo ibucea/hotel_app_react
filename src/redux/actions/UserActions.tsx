@@ -4,9 +4,7 @@ import axios from 'axios';
 import { IUserLogin } from '../../interfaces/IUser';
 
 export const login = (dispatch: Dispatch) => async (user: IUserLogin) =>  {
-
     try {
-        
         dispatch({ type: actions.USER_LOGIN_REQUEST });
 
         const config = {
@@ -30,12 +28,9 @@ export const login = (dispatch: Dispatch) => async (user: IUserLogin) =>  {
             : error.message,
         });
     }
-
 }
 
 export const logout = (dispatch: Dispatch) =>() =>  {
-
     dispatch({ type: actions.USER_LOGOUT });
     localStorage.removeItem("userInfo");
-
 }

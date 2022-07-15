@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, FormControl, Input, InputLabel, MenuItem, Select } from '@material-ui/core';
+import { Container, FormControl, Input, InputLabel, Select } from '@material-ui/core';
 
 type SearchRoomsParams = {
     keyword: string,
@@ -9,8 +9,6 @@ type SearchRoomsParams = {
     roomType: string,
     setRoomType: React.Dispatch<React.SetStateAction<string>>
 }
-
-
 
 export const SearchRooms: React.FC<SearchRoomsParams> =
     ({ keyword, setKeyword, numOfBeds, setNumOfBeds, roomType, setRoomType }) => {

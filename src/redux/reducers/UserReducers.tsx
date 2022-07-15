@@ -2,7 +2,6 @@ import * as actions from '../constants/UserConstants';
 import { AnyAction } from 'redux'
 
 export const userLoginReducer = (state = {}, action: AnyAction) => {
-
     switch (action.type) {
         case actions.USER_LOGIN_REQUEST:
             return {

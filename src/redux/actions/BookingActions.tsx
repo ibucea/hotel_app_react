@@ -3,11 +3,8 @@ import axios from 'axios';
 import * as actions from '../constants/BookingConstants';
 import { IRoom } from "../../interfaces/IRoom";
 import { ICreateBooking } from "../../interfaces/IBooking";
-import { IUser } from "../../interfaces/IUser";
-import store from "../store";
 
 export const checkRoomBooking = (dispatch: Dispatch) => async(roomId: IRoom['roomId'], checkInDate: Date, checkOutDate: Date) => {
-
     try {
         dispatch({ type: actions.CHECK_ROOM_BOOKING_REQUEST });
 
@@ -27,11 +24,9 @@ export const checkRoomBooking = (dispatch: Dispatch) => async(roomId: IRoom['roo
             payload: error.response && error.response.data.message ? 
             error.response.data.message : error.message });
     }
-
 }
 
 export const createBooking = (dispatch: Dispatch, getState: any) => async (bookingData: ICreateBooking) => {
-
     try {
         dispatch({ type: actions.CREATE_BOOKING_REQUEST });
 
@@ -53,11 +48,9 @@ export const createBooking = (dispatch: Dispatch, getState: any) => async (booki
             payload: error.response && error.response.data.message ? 
             error.response.data.message : error.message });
     }
-
 }
 
 export const getBookedDates = (dispatch: Dispatch) => async (roomId:  IRoom['roomId']) =>  {
-
     try {
         dispatch({ type: actions.GET_BOOKED_DATES_REQUEST });
 
@@ -74,7 +67,6 @@ export const getBookedDates = (dispatch: Dispatch) => async (roomId:  IRoom['roo
 }
 
 export const getMyBookings = (dispatch: Dispatch, getState:any) => async () =>  {
-  
     try {
         dispatch({ type: actions.GET_MY_BOOKINGS_REQUEST });
        
@@ -97,5 +89,4 @@ export const getMyBookings = (dispatch: Dispatch, getState:any) => async () =>  
             payload: error.response && error.response.data.message ? 
             error.response.data.message : error.message });
     }
-
 }

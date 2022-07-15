@@ -2,7 +2,6 @@ import * as actions from '../constants/RegisterConstants';
 import * as userActions from '../constants/UserConstants';
 
 export const userRegisterReducer = (state = {}, action: any) => {
-
     switch (action.type) {
         case actions.USER_REGISTER_REQUEST:
             return {
