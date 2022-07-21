@@ -19,7 +19,7 @@ const RoomCard: React.FC<IRoomCard> = (props: IRoomCard) => {
     return (
         <Card>
             <>
-                <Link to={`/room/${roomId}`} className="roomLink">
+                <Link data-testid="room-link" to={`/room/${roomId}`} className="roomLink">
                     {name}
                 </Link>
                 ${pricePerNight} / Per Night

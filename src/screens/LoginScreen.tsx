@@ -15,7 +15,7 @@ const LoginScreen: React.FC = () => {
     const [email, setEmail] = useState<IUser['email']>("");
     const [password, setPassword] = useState<IUser['password']>("");
 
-    const { userInfo, loading, success } = useSelector((state: RootStateOrAny) => state.userLogin);
+    const { userInfo, loading, success } = useSelector((state: RootStateOrAny) => state.userLogin || {});
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
